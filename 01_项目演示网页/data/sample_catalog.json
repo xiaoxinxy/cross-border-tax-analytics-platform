@@ -1,0 +1,42 @@
+[
+  {
+    "id": "A",
+    "name": "样本A 综合均衡",
+    "key": "样本A_综合均衡",
+    "category": "综合均衡型",
+    "useCase": "完整流程样本",
+    "focus": "销售、利润、节税、风险都比较均衡",
+    "risk": "中低",
+    "highlight": "经营表现均衡"
+  },
+  {
+    "id": "B",
+    "name": "样本B 高利润版",
+    "key": "样本B_高利润版",
+    "category": "盈利强化型",
+    "useCase": "利润提升样本",
+    "focus": "节税额和利润率更明显",
+    "risk": "低",
+    "highlight": "节税和利润提升明显"
+  },
+  {
+    "id": "C",
+    "name": "样本C 高风险版",
+    "key": "样本C_高风险版",
+    "category": "风控预警型",
+    "useCase": "风控预警样本",
+    "focus": "缺登记、缺申报、非适用货物等问题更多",
+    "risk": "高",
+    "highlight": "高风险订单更集中"
+  },
+  {
+    "id": "D",
+    "name": "样本D 平台对比版",
+    "key": "样本D_平台对比版",
+    "category": "平台经营型",
+    "useCase": "比较 Amazon、Temu、Shopee、TikTok Shop 等平台差异",
+    "focus": "平台结构、类目结构和利润表现差异",
+    "risk": "中",
+    "highlight": "平台结构差异明显"
+  }
+]

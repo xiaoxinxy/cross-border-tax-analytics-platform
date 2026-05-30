@@ -1,0 +1,44 @@
+E路退技术路线
+
+一、多平台销售数据导入
+当前实现：
+- 网页支持 CSV / JSON 上传；
+- data/orders_template.csv 是基础模板；
+- data/orders_template.xlsx 是 Excel 模板，适合按题目要求说明“初期不做 API 自动对接，先用 Excel 模板上传”。
+
+对应技术：
+- Excel / CSV 模板上传；
+- Python Pandas 清洗脚本：tools/pandas_cleaner.py；
+- 后续可扩展 Amazon、Temu、Shopee、Shopify 等平台 API 自动同步。
+
+二、“无票免税”智能匹配
+当前实现：
+- 数据中保留 HS编码、是否有进货发票、综试区登记、出口申报完成、非取消退免税货物等字段；
+- data/product_code_db.csv 是小型商品编码数据库；
+- tools/pandas_cleaner.py 会根据商品编码库、税率和政策条件重新计算是否符合无票免税。
+
+对应技术：
+- 小型商品编码数据库；
+- 规则判断为主；
+- AI 可作为辅助解释和报告生成，当前网页中的 AI 分析报告用于把计算结果翻译成通俗结论。
+
+三、利润测算（含税）
+当前实现：
+- 自动计算销售额、采购成本、物流费、平台佣金、推广费、估算税费、免税前利润、免税后利润、节省税费、免税后利润率；
+- 网页端可交互演示；
+- Pandas 脚本可批量重新测算。
+
+对应技术：
+- Pandas 批量计算；
+- 网页 SVG 图表做交互展示；
+- tools/matplotlib_report.py 提供 Matplotlib 图表报告示例；
+- tools/streamlit_app.py 提供 Streamlit 快速数据应用原型。
+
+四、上台说法
+本项目当前不是正式报税系统，而是一个课程展示原型。技术上采用：
+HTML/CSS/JavaScript 做可交互页面；
+Excel/CSV/JSON 做样本数据；
+Python Pandas 做数据清洗和测算；
+商品编码库做 HS 编码辅助匹配；
+Matplotlib/网页图表做可视化报告；
+Streamlit 文件作为可继续开发的数据应用版本。

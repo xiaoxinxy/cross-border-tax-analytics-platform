@@ -1,0 +1,220 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>E路退 - 跨境电商无票免税分析平台</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="mobile-nav" aria-label="移动端导航">
+  <a href="#overview">总览</a>
+  <a href="#calc">计算器</a>
+  <a href="#samples">样本</a>
+  <a href="#tech">技术</a>
+  <a href="#dashboard">看板</a>
+  <a href="#risk">风控</a>
+  <a href="#tables">表格</a>
+  <a href="#report">报告</a>
+</div>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="回到首页">
+      <span class="brand-mark">E</span>
+      <span><strong>E路退</strong><small>跨境电商税务分析</small></span>
+    </a>
+    <nav class="nav">
+      <a class="active" href="#overview"><span></span>经营总览</a>
+      <a href="#calc"><span></span>跨境计算器</a>
+      <a href="#samples"><span></span>数据样本</a>
+      <a href="#tech"><span></span>技术架构</a>
+      <a href="#dashboard"><span></span>数据看板</a>
+      <a href="#risk"><span></span>风险与机会</a>
+      <a href="#compare"><span></span>商品对比</a>
+      <a href="#tables"><span></span>数据资产</a>
+      <a href="#report"><span></span>AI分析报告</a>
+    </nav>
+  </aside>
+
+  <main>
+    <header class="topbar">
+      <div>
+        <span class="eyebrow">跨境电商小包 · 无票免税分析</span>
+        <h1>让每一单都能回答：赚不赚钱，能不能免税，风险在哪里。</h1>
+      </div>
+      <div class="top-actions">
+        <label class="sound-toggle"><input type="checkbox" id="soundToggle" /> 操作提示音</label>
+        <button class="btn ghost" id="printBtn">打印页面</button>
+      </div>
+    </header>
+
+    <section class="hero" id="overview">
+      <div class="hero-copy">
+        <p class="lead">E路退把订单字段、政策条件、利润测算、风险预警和经营建议串成一条完整链路，让跨境小包业务从流水记录变成可计算的经营判断。</p>
+        <div class="hero-flow">
+          <div><b>01</b><span>导入或切换样本</span></div>
+          <div><b>02</b><span>自动计算免税影响</span></div>
+          <div><b>03</b><span>定位高利润和高风险订单</span></div>
+          <div><b>04</b><span>生成通俗报告</span></div>
+        </div>
+      </div>
+      <div class="hero-insight" id="heroInsight"></div>
+    </section>
+
+    <section class="section calc-section" id="calc">
+      <div class="section-head">
+        <div>
+          <span class="tag">跨境税费计算器</span>
+          <h2>按目的地税率、企业所得税和免税条件测算单品利润</h2>
+          <p>选择目的地国家后，系统会带入常见 VAT / GST / 销售税和企业所得税预设；税率、费用和政策条件都可以手动调整，便于现场解释不同政策口径下的利润变化。</p>
+        </div>
+      </div>
+      <div class="panel calculator featured-calculator">
+        <div class="preset-row">
+          <button class="btn secondary" data-case="0">综合示例</button>
+          <button class="btn secondary" data-case="1">资料缺失</button>
+          <button class="btn secondary" data-case="2">有发票订单</button>
+        </div>
+        <div class="calc-layout">
+          <div>
+            <div class="form-grid calc-form-grid">
+              <label>商品名称<input id="cProduct" value="蓝牙耳机保护套" /></label>
+              <label>目的地国家<select id="cCountry"></select></label>
+              <label>销售额<input id="cRevenue" type="number" value="1280" /><span class="unit" data-currency-unit>USD</span></label>
+              <label>采购成本<input id="cCost" type="number" value="520" /><span class="unit" data-currency-unit>USD</span></label>
+              <label>物流费<input id="cLogistics" type="number" value="170" /><span class="unit" data-currency-unit>USD</span></label>
+              <label>平台佣金<input id="cFee" type="number" value="120" /><span class="unit" data-currency-unit>USD</span></label>
+              <label>推广费<input id="cAd" type="number" value="68" /><span class="unit" data-currency-unit>USD</span></label>
+              <label>其他费用<input id="cOtherFee" type="number" value="45" /><span class="unit" data-currency-unit>USD</span></label>
+              <label>当地 VAT/GST/销售税<input id="cLocalTaxRate" type="number" step="0.1" value="20" /><span class="unit">%</span></label>
+              <label>无票免税测算税率<input id="cTaxRate" type="number" step="0.1" value="13" /><span class="unit">%</span></label>
+              <label>企业所得税率<input id="cCorpTaxRate" type="number" step="0.1" value="25" /><span class="unit">%</span></label>
+              <label>是否有进货发票<select id="cInvoice"><option value="否">否</option><option value="是">是</option></select></label>
+              <label>综试区登记<select id="cZone"><option value="是">是</option><option value="否">否</option></select></label>
+              <label>出口申报完成<select id="cFiled"><option value="是">是</option><option value="否">否</option></select></label>
+              <label>非取消退免税货物<select id="cAllowed"><option value="是">是</option><option value="否">否</option></select></label>
+              <button class="btn calc-btn" id="calcBtn">重新测算</button>
+            </div>
+          </div>
+          <aside class="tax-policy-card">
+            <h3>当前税率口径</h3>
+            <div id="countryTaxInfo"></div>
+            <p>税率预设按 2026 年公开常见标准税率口径整理。美国、加拿大等地区税率会因州、省或城市不同而变化；这里提供国家/地区常见口径，现场演示可直接手动改税率。</p>
+          </aside>
+        </div>
+        <div class="result-grid calc-result-grid">
+          <div><small>销售额</small><b id="rRevenue">-</b></div>
+          <div><small>当地流转税</small><b id="rLocalTax">-</b></div>
+          <div><small>企业所得税</small><b id="rCorpTax">-</b></div>
+          <div><small>免税前净利润</small><b id="rBefore">-</b></div>
+          <div><small>免税后净利润</small><b id="rAfter">-</b></div>
+          <div class="positive"><small>利润变化</small><b id="rDelta">-</b></div>
+        </div>
+        <div class="formula-box">
+          <h3>计算公式</h3>
+          <p id="calcFormula"></p>
+          <p id="invoiceFormula"></p>
+        </div>
+        <p class="explain" id="calcExplain"></p>
+      </div>
+    </section>
+
+    <section class="section" id="samples">
+      <div class="section-head">
+        <div><span class="tag">数据样本</span><h2>四组样本对应四种经营场景</h2></div>
+        <div class="head-actions">
+          <a class="btn secondary" href="data/orders_template.xlsx" download>Excel 模板</a>
+          <label class="file-label">上传 CSV / JSON<input type="file" id="fileInput" accept=".csv,.json" /></label>
+        </div>
+      </div>
+      <div class="sample-grid" id="sampleGrid"></div>
+      <div class="dataset-strip"><span id="datasetStatus">当前数据：-</span><span id="datasetRows">订单数：-</span><span id="datasetPersona">分析重点：-</span></div>
+    </section>
+
+    <section class="section" id="tech">
+      <div class="section-head">
+        <div>
+          <span class="tag">技术架构</span>
+          <h2>从订单采集到免税测算的完整数据链路</h2>
+          <p>系统以标准订单模板作为数据入口，通过 Pandas 清洗和规则计算完成利润、税费与风险判断，再结合商品编码库进行 HS/税率辅助匹配，最终形成网页看板、经营表格和分析报告。</p>
+        </div>
+      </div>
+      <div class="tech-grid">
+        <article class="tech-card"><b>01</b><h3>Excel 模板采集</h3><p>统一订单字段，记录销售额、成本、物流费、发票状态和出口申报状态。</p></article>
+        <article class="tech-card"><b>02</b><h3>Pandas 清洗测算</h3><p>自动补字段、转数字、判断无票免税条件，并计算节省税费、免税前后利润和风险等级。</p></article>
+        <article class="tech-card"><b>03</b><h3>商品编码库匹配</h3><p>用 HS 编码、商品关键词和默认税率做基础匹配，让“能不能免税”的判断更有依据。</p></article>
+        <article class="tech-card"><b>04</b><h3>可视化与报告</h3><p>网页负责交互展示，Streamlit 提供 Python 原型方向，Matplotlib 可生成静态图表报告。</p></article>
+      </div>
+      <div class="download-grid">
+        <a href="data/orders_template.xlsx" download><strong>订单 Excel 模板</strong><span>标准化采集原始订单</span></a>
+        <a href="data/product_code_db.csv" download><strong>商品编码库 CSV</strong><span>HS 编码、默认税率和政策提示</span></a>
+        <a href="tools/pandas_cleaner.py" download><strong>Pandas 清洗脚本</strong><span>核心数据处理逻辑</span></a>
+        <a href="tools/streamlit_app.py" download><strong>Streamlit 原型</strong><span>Python 快速数据应用备选路线</span></a>
+        <a href="tools/matplotlib_report.py" download><strong>Matplotlib 报告脚本</strong><span>生成静态经营图表</span></a>
+        <a href="技术架构说明.txt" download><strong>技术架构说明</strong><span>数据处理与展示路径</span></a>
+      </div>
+    </section>
+
+    <section class="section" id="dashboard">
+      <div class="section-head tight">
+        <div><span class="tag">数据看板</span><h2>先看总体经营质量，再看哪里值得优化</h2></div>
+        <div class="filters"><select id="platformFilter"></select><select id="categoryFilter"></select><select id="riskFilter"><option value="全部">全部风险</option><option>低</option><option>中</option><option>高</option></select><button class="btn compact" id="resetBtn">重置</button></div>
+      </div>
+      <div class="metric-grid">
+        <article class="metric"><small>销售额合计</small><b id="kRevenue">-</b><span>当前筛选结果</span></article>
+        <article class="metric"><small>免税后利润</small><b id="kProfit">-</b><span>扣除成本与费用</span></article>
+        <article class="metric accent"><small>节省税费</small><b id="kSaving">-</b><span>符合条件订单累计</span></article>
+        <article class="metric danger"><small>高风险订单</small><b id="kRisk">-</b><span>需要补资料或复核</span></article>
+      </div>
+      <div class="chart-grid">
+        <article class="panel wide"><div class="panel-title"><h3>月度销售额与利润走势</h3><span>看业务是否稳定增长</span></div><svg class="chart" id="lineChart"></svg></article>
+        <article class="panel"><div class="panel-title"><h3>平台销售占比</h3><span>看渠道结构</span></div><svg class="chart" id="donutChart"></svg></article>
+        <article class="panel"><div class="panel-title"><h3>类目节税贡献</h3><span>看政策价值集中在哪</span></div><svg class="chart" id="barChart"></svg></article>
+        <article class="panel"><div class="panel-title"><h3>风险等级分布</h3><span>看合规压力</span></div><svg class="chart" id="riskChart"></svg></article>
+      </div>
+    </section>
+
+    <section class="section" id="risk">
+      <div class="section-head"><div><span class="tag">风险与机会</span><h2>把“能免税”和“敢不敢免税”分开看</h2></div></div>
+      <div class="insight-grid">
+        <article class="panel"><div class="panel-title"><h3>利润机会榜</h3><span>优先推广对象</span></div><div class="rank-list" id="rankList"></div></article>
+        <article class="panel"><div class="panel-title"><h3>高风险提醒</h3><span>优先补齐资料</span></div><div class="risk-list" id="riskList"></div></article>
+        <article class="panel"><div class="panel-title"><h3>数据质量检查</h3><span>字段是否可用于分析</span></div><div class="quality-list" id="qualityList"></div></article>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="section-head tight"><div><span class="tag">商品对比</span><h2>把订单按利润和风险排出来</h2></div><button class="btn ghost" id="downloadBtn">下载分析报告</button></div>
+      <div class="table-wrap"><table id="ordersTable"></table></div>
+    </section>
+
+    <section class="section" id="tables">
+      <div class="section-head">
+        <div>
+          <span class="tag">数据资产</span>
+          <h2>样本、平台、类目和编码库形成结构化数据底座</h2>
+          <p>订单明细、经营汇总、平台表现、类目贡献和商品编码库共同支撑页面看板，让每个分析结论都能回到具体数据。</p>
+        </div>
+        <div class="head-actions">
+          <a class="btn" href="data/E路退_表格样式数据包.xlsx" download>下载数据包</a>
+          <a class="btn secondary" href="data/sample_summary_table.csv" download>汇总 CSV</a>
+        </div>
+      </div>
+      <div class="table-card-grid">
+        <article class="table-card"><div class="panel-title"><h3>样本经营汇总</h3><span>四组样本对比</span></div><div class="mini-table-wrap"><table class="mini-table" id="summaryTable"></table></div></article>
+        <article class="table-card"><div class="panel-title"><h3>平台经营分类</h3><span>渠道表现预览</span></div><div class="mini-table-wrap"><table class="mini-table" id="platformPreviewTable"></table></div></article>
+        <article class="table-card"><div class="panel-title"><h3>类目节税贡献</h3><span>商品结构预览</span></div><div class="mini-table-wrap"><table class="mini-table" id="categoryPreviewTable"></table></div></article>
+        <article class="table-card"><div class="panel-title"><h3>商品编码库</h3><span>HS 与税率依据</span></div><div class="mini-table-wrap"><table class="mini-table" id="codePreviewTable"></table></div></article>
+      </div>
+    </section>
+
+    <section class="section report-section" id="report">
+      <div class="section-head"><div><span class="tag">AI分析报告</span><h2>自动生成当前筛选条件下的经营摘要</h2></div><button class="btn secondary" id="copyReportBtn">复制摘要</button></div>
+      <div class="report-card" id="aiReport"></div>
+    </section>
+  </main>
+</div>
+<script src="data/datasets.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
